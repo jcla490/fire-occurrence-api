@@ -4,7 +4,7 @@
 # country        DONE, explicit list
 # name           DONE, contains
 # size_ac        DONE, greater than only, ValidationError if not int or float
-# start_date         this should be a greater than 
+# start_date     DONE
 # cause          DONE, contains
 # state              done, but no real error checking
 # latitude       DONE

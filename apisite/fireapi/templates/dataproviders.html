@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<section class="my-5" id='about'>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <h5 class='card-title text-muted text-uppercase'>Data Partners</h5>
+                <p>Below is a list of the countries, agencies, and sources who have either made their data publicly available or provided us their dataset for inclusion in the API. </p>
+                <div class="list-group-flush">
+                    <div class="list-group-item">
+                        <div class="media">
+                            <img src="{% static 'img/us_flag.svg' %}" class="mr-3" alt="..." height="35vh" width="50vh">
+                            <div class="media-body">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">United States</h5>
+                                    <small>1,880,545 fires</small>
+                                </div>
+                                <p class="mb-1">Fire Program Analysis - Fire Occurrence Database (FPA-FOD) </p>
+                                <p><small>This dataset lags behind by up to two years to account for data submission, cleaning, and processing from the fifty states. Data from 1992 to 2015 across all federal land agencies, states, and some tribal governments are available. This dataset is considered the authoritative source for fire occurrence in the United States.</small></p>
+                                <p><small><bold>CITATION:</bold> Short, Karen C. 2017. Spatial wildfire occurrence data for the United States, 1992-2015 [FPA_FOD_20170508]. 4th Edition. Fort Collins, CO: Forest Service Research Data Archive. <a href="https://doi.org/10.2737/RDS-2013-0009.4" target="_blank" >https://doi.org/10.2737/RDS-2013-0009.4</a></small></p>
+                            </div>
+                        </div>
+                    </div> <!-- List group item -->
+                    <div class="list-group-item">
+                            <div class="media">
+                                <img src="{% static 'img/flags/canada_flag.svg' %}" class="mr-3" alt="..." height="35vh" width="50vh">
+                                <div class="media-body">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Canada</h5>
+                                        <small>1,880,545 fires</small>
+                                    </div>
+                                    <p class="mb-1">Canada Wildfire Information System National Fire Database (CWFIS-NFMB) </p>
+                                    <p><small>The CWFIS dataset includes fires from 1980 to 2019 across all provinces, territories, and Parks Canada. It is updated frequently throughout the year. This dataset is considered the authoritative source for fire occurrence in Canada.</small></p>
+                                    <p><small><bold>CITATION:</bold> Canadian Forestry Service. 2019. See <a href="https://cwfis.cfs.nrcan.gc.ca/ha/nfdb" target="_blank" >https://cwfis.cfs.nrcan.gc.ca/ha/nfdb</a> for more information.</small></p>
+                                </div>
+                            </div>
+                        </div> <!-- List group item -->
+                </div> <!-- List group -->
+            </div> <!-- col -->
+        </div> <!-- row -->
+    </div> <!-- container -->
+</section>
+
+{% endblock %}

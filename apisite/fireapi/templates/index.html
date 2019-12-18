@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+    <header>
+            <div class="overlay"></div>
+            <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+                <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
+            </video>
+            <div class="container h-100">
+                <div class="d-flex h-100 text-center align-items-center">
+                <div class="w-100 text-white">
+                    <h1 class="display-3">1.88 million fire records</h1>
+                    <p class="lead mb-0">Access for free, forever.</p>
+                </div>
+                </div>
+            </div>
+    </header>
+
+    <section class="pricing py-5">
+            <div class="container">
+              <div class="row">
+                <!-- Free Tier -->
+                <div class="col-lg-4">
+                  <div class="card mb-4 mb-lg-0">
+                    <div class="card-body">
+                      <h5 class="card-title text-muted text-uppercase text-center">Countries</h5>
+                      <h6 class="card-price text-center mb-2">1</h6>
+                    </div>
+                  </div>
+                </div>
+                <!-- Plus Tier -->
+                <div class="col-lg-4">
+                  <div class="card mb-4 mb-lg-0">
+                    <div class="card-body">
+                      <h5 class="card-title text-muted text-uppercase text-center">Fires</h5>
+                      <h6 class="card-price text-center mb-2">1,880,465</h6>
+                    </div>
+                  </div>
+                </div>
+                <!-- Pro Tier -->
+                <div class="col-lg-4">
+                        <div class="card mb-4 mb-lg-0">
+                            <div class="card-body">
+                      <h5 class="card-title text-muted text-uppercase text-center">Area Burned</h5>
+                      <h6 class="card-price text-center mb-2">140.1M<span class="period"> acres</span></h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+
+
+    <section class="my-5" id='about'>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <h5 class='card-title text-muted text-uppercase'>About</h5>
+                  <p>Fueled by the effects of climate change, poor forest health, and increasing populations, wildfires are becoming more frequent and more destructive, costing more money and placing more people at risk. Being able to quantify the intensity of past fire activity and risk is an important component of fire prevention and education, planning, mitigation, and science activities designed to reduce the negative effects of fire. In recent years, many countries and agencies have begun to make past fire occurrence data available online. Unfortunately, this data lacks much standardization, may not be easily obtained, and formats may vary from text files to databases to GIS shapefiles. </p>
+                  <p>We do the work to standardize this data by providing a simple <code>JSON</code> response structure, a browsable API for human-readability, and some value-added parameters to make searching records a bit easier. We focus on keeping the data that matters most: fire start date, final size, cause, latitude, and longitude while keeping optional fields like fire name and fire out date when they are provided by the source system. </p>
+                  <p>The API should make consuming these records in your analyses, visualizations, and web and mobile applications near effortless. Ready to <a href="{% url 'getstarted' %}">get started</a>? Try an <a href="{% url 'examples' %}">example</a> or take a look at the <a href="{% url 'docs' %}">documentation</a> for more info.</p>  
+                </div>
+              </div>
+            </div>
+    </section>
+    <section class="my-5" id='filler'>
+
+                        <div class='parallax'></div>
+
+    </section>
+
+    <section class="my-5" id='contact'>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <h5 class='card-title text-muted text-uppercase'>Contact</h5>
+                  <h6>Need Help?</h6>
+                  <p>If you're still stuck after reading the <a href="{% url 'docs' %}">documentation</a> or working through the <a href="{% url 'examples' %}">examples</a>, feel free to contact us at <a href="mailto:jclark754@gmail.com?&subject=Support Request">support@support.com</a> and we'll get you squared away.
+  
+                  <h6>Have Fire Occurrence Data?</h6>
+                  <p>We rely on establishing partnerships with local and national agencies to add more fire occurrence data to the API. If your agency or government would like to submit data for inclusion in this service, please contact <a href="mailto:data@data.com?&subject=Data Partnership">data@data.com</a>.</p>
+
+                </div>
+              </div>
+            </div>
+    </section>
+{% endblock %}
