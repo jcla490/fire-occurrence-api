@@ -1,3 +1,17 @@
+# TODO 
+# id             DONE, ValueError if not int
+# source         DONE, explicit list
+# country        DONE, explicit list
+# name           DONE, contains
+# size_ac        DONE, greater than only, ValidationError if not int or float
+# start_date         this should be a greater than 
+# cause          DONE, contains
+# state              done, but no real error checking
+# latitude       DONE
+# longitude      DONE
+# fire duration  SCOPING
+# radius         SCOPING
+
 from rest_framework import status
 from rest_framework.response import Response
 from django.core.exceptions import ValidationError
@@ -5,6 +19,7 @@ from django.core.exceptions import ValidationError
 from django.http import JsonResponse
 from rest_framework.views import APIView
 import time
+import datetime
 
 from fireapi.models import Fires
 from fireapi.api.serializers import FiresSerializer
@@ -84,19 +99,51 @@ class ListFires(APIView):
                 summary = self.api_error(-1, 'ID must be of type INT.')
                 return JsonResponse(summary, safe=False)
 
+        # Filter by bbox
+        bbox = request.GET.get('bbox')
+        if bbox:
+            bbox = [value.strip() for value in bbox.split(',')]
+            if len(bbox) == 4:
+                try:
+                    fires = fires.filter(latitude__lte=bbox[0], latitude__gte=bbox[1]).filter(longitude__gte=bbox[2], longitude__lte=bbox[3])
+                except ValidationError:
+                    summary = self.api_error(-1, 'BBOX must be a comma separated string of four INT or FLOAT values.')
+                    return JsonResponse(summary, safe=False)
+            else:
+                summary = self.api_error(-1, 'BBOX must be a comma separated string of four INT or FLOAT values.')
+                return JsonResponse(summary, safe=False)
 
-       # TODO 
-       # id             done, ValueError if not int
-       # source         done, explicit list
-       # country        DONE, explicit list
-       # name           DONE, contains
-       # size_ac        DONE, greater than only, ValidationError if not int or float
-       # start_date     this should be a greater than 
-       # end_date       should this exist?
-       # cause          DONE, contains
-       # state          done, but no real error checking
-       # latitude       should be a bounding box
-       # longitude      should be a bounding box
+        # radius = request.GET.get('bbox')
+        # if radius:
+        #     r_box = [value.strip() for value in radius.split(',')]
+        #     init_lat = r_box[0]
+        #     init_lon = r_box[1]
+        #     search_dist = r_box[2]
+        #     
+
+        query_start_date = request.GET.get('query_start_date')
+        query_end_date = request.GET.get('query_end_date')
+        if query_start_date or query_end_date: 
+            if query_start_date and query_end_date:
+                try:
+                    if (len(query_start_date) == 8) and (len(query_end_date) == 8):
+                        start = datetime.datetime.strptime(query_start_date, '%Y%m%d').date()
+                        end = datetime.datetime.strptime(query_end_date, '%Y%m%d').date()
+                        print(start, end)
+                        if end >= start:
+                            fires = fires.filter(start_date__range=(start, end ))
+                        else:
+                            summary = self.api_error(-1, 'QUERY_END_DATE must be later than QUERY_START_DATE.')
+                            return JsonResponse(summary, safe=False)
+                    else:
+                        summary = self.api_error(-1, 'QUERY_START_DATE and QUERY_END_DATE must be INT and each have format YYYYmmdd.')
+                        return JsonResponse(summary, safe=False)
+                except ValueError:
+                    summary = self.api_error(-1, 'QUERY_START_DATE and QUERY_END_DATE must be INT and each have format YYYYmmdd.')
+                    return JsonResponse(summary, safe=False)
+            else:
+                summary = self.api_error(-1, 'QUERY_START_DATE and QUERY_END_DATE must be used together with each date having format YYYYmmdd.')
+                return JsonResponse(summary, safe=False)
 
         t1 = time.time() - t0
 
