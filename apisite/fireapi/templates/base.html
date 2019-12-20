@@ -2,75 +2,77 @@
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="theme-color" content=""/>
-		<meta name="description" content="">
-		<meta name="author" content="Josh Clark">
-		
-		<title>Global Fire Occurrence API</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content=""/>
+    <meta name="description" content="">
+    <meta name="author" content="Josh Clark">
+    
+    <title>Global Fire Occurrence API</title>
 
-		<!-- Font Awesome Icons -->
-        <script src="https://kit.fontawesome.com/c040f54e02.js" crossorigin="anonymous"></script>
-		<!-- Bootstrap core CSS -->
-		<link rel="stylesheet" type="text/css" href="{% static 'vendor/Bootstrap-4-4.1.1/css/bootstrap.min.css' %}">
-		<!-- Google Fonts -->
-		<!-- Site CSS -->
-		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-	</head>
-    <body>
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/c040f54e02.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/Bootstrap-4-4.1.1/css/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
 
     <!-- NAV BAR-->
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-danger">
-        <a class="navbar-brand text-white" href="/">Global Fire Occurrence API</a>
+        <a class="navbar-brand text-white" href="/"><i class="fas fa-fire-alt fa-lg pr-1" ></i> <b>Global Fire Occurrence API</b></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
-      
+        
         <div class="collapse navbar-collapse" id="navbarToggler">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'getstarted' %}">Getting Started</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'examples' %}">Examples</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'docs' %}">Reference</a>
-            </li>
-            <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'dataproviders' %}">Partners</a>
-            </li>
-
-          </ul>
-          <hr>
-          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                        <a class="nav-link text-white" href="{% url 'index' %}#contact">Contact</a>
-                    </li>
+                    <a class="nav-link text-white" href="{% url 'getstarted' %}">Getting Started</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'examples' %}">Examples</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'docs' %}">Reference</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'dataproviders' %}">Partners</a>
+                </li>
+            </ul>
+            <hr>
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'index' %}#contact">Contact</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Sign Up!</a>
                 </li>
-
-              </ul>
+            </ul>
         </div>
-      </nav>
+    </nav>
+
     <!-- CONTENT -->
     {% block content %}
     {% endblock %}
 
+    <!-- FOOTER -->
     <footer class="text-center py-3">
         <p class="text-muted"><small>&copy; 2019 | All data here subject to the original licenses and agreements of the data providers.</small></p>
-        <a href="https://github.com/jcla490/fire-occurrence-api"><i id="social-fb" class="fab fa-github fa-3x social"></i></a>
+        <a href="https://github.com/jcla490/fire-occurrence-api"><i id="social-github" class="fab fa-github fa-3x social"></i></a>
     </footer>
+
     <!-- SCRIPTS -->
-	<!-- jQuery Core -->
-	<script src="{% static 'vendor/jQuery-3.3.1/jquery-3.3.1.min.js' %}"></script>
-	<!-- Bootstrap Core -->
-	<script src="{% static 'vendor/Bootstrap-4-4.1.1/js/bootstrap.min.js' %}"></script>
-	<!-- Site JS -->
+    <!-- jQuery Core -->
+    <script src="{% static 'vendor/jQuery-3.3.1/jquery-3.3.1.min.js' %}"></script>
+    <!-- Bootstrap Core -->
+    <script src="{% static 'vendor/Bootstrap-4-4.1.1/js/bootstrap.min.js' %}"></script>
+    <!-- Site JS -->
     <script src="{% static 'js/site.js' %}"></script>
-    
-    </body>
+
+</body>
 </html>

@@ -2,16 +2,29 @@
 {% block content %}
 {% load static %}
 
-<section class="my-5" id='about'>
+<section class="mt-4 mb-3">
     <div class="container">
         <div class="row">
             <div class="col-md-10 mx-auto">
-                <h5 class='card-title text-muted text-uppercase'>Data Partners</h5>
-                <p>Below is a list of the countries, agencies, and sources who have either made their data publicly available or provided us their dataset for inclusion in the API. </p>
+                    <h5 class='card-title text-muted text-uppercase'>Data Partners</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id='filler'>
+    <div class='parallax' id="filler-img-2"></div>
+</section>
+
+<section class="mt-4 mb-5" id='about'>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <p>Below is a list of the countries, agencies, and sources who have either made their data publicly available or provided us their data for inclusion in the API. </p>
                 <div class="list-group-flush">
                     <div class="list-group-item">
                         <div class="media">
-                            <img src="{% static 'img/us_flag.svg' %}" class="mr-3" alt="..." height="35vh" width="50vh">
+                            <img src="{% static 'img/flags/us_flag.svg' %}" class="mr-3" height="35vh" width="50vh">
                             <div class="media-body">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1">United States</h5>
@@ -25,14 +38,14 @@
                     </div> <!-- List group item -->
                     <div class="list-group-item">
                             <div class="media">
-                                <img src="{% static 'img/flags/canada_flag.svg' %}" class="mr-3" alt="..." height="35vh" width="50vh">
+                                <img src="{% static 'img/flags/canada_flag.svg' %}" class="mr-3" height="35vh" width="50vh">
                                 <div class="media-body">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1">Canada</h5>
-                                        <small>1,880,545 fires</small>
+                                        <small>404,601 fires</small>
                                     </div>
-                                    <p class="mb-1">Canada Wildfire Information System National Fire Database (CWFIS-NFMB) </p>
-                                    <p><small>The CWFIS dataset includes fires from 1980 to 2019 across all provinces, territories, and Parks Canada. It is updated frequently throughout the year. This dataset is considered the authoritative source for fire occurrence in Canada.</small></p>
+                                    <p class="mb-1">Canada Wildfire Information System National Fire Database (CWFIS-NFDB) </p>
+                                    <p><small>The CWFIS dataset includes fires from 1948 to 2019 across all provinces, territories (except the Nunavut territory), and Parks Canada. It is updated annually. Since we require fires in our dataset to have at least a start date, we eliminated 3,383 fire records (0.008%) that account for 6.2M acres burned (0.019%). We also intersected Parks Canada fires with province/territory boundaries provided by the Canada Census to get the actual province/territory the fire occurred in. This dataset is considered the authoritative source for fire occurrence in Canada.</small></p>
                                     <p><small><bold>CITATION:</bold> Canadian Forestry Service. 2019. See <a href="https://cwfis.cfs.nrcan.gc.ca/ha/nfdb" target="_blank" >https://cwfis.cfs.nrcan.gc.ca/ha/nfdb</a> for more information.</small></p>
                                 </div>
                             </div>
