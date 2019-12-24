@@ -1,16 +1,22 @@
-# TODO 
+# TODO 22 December 2019
 # id             DONE, ValueError if not int
 # source         DONE, explicit list
 # country        DONE, explicit list
 # name           DONE, contains
 # size_ac        DONE, greater than only, ValidationError if not int or float
 # start_date     DONE
-# cause          DONE, contains
-# state              done, but no real error checking
+# end_date       DONE
+# cause          DONE, explicit list
+# state          DONE, contains (because sometimes a country's second language can be used, like Canada)
 # latitude       DONE
 # longitude      DONE
+# state_iso      DONE, must be a direct match
+# country_iso    DONE, explicit list
 # fire duration  SCOPING
 # radius         SCOPING
+# year           SCOPING
+# month          SCOPING
+# doy            SCOPING
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -47,17 +53,33 @@ class ListFires(APIView):
         country = request.GET.get('country')
         if country:
             country = country.upper()
-            if country in ['USA', 'CANADA']:
+            if country in ['UNITED-STATES', 'CANADA', 'MEXICO']:
                 fires = fires.filter(country=country)
             else:
-                summary = self.api_error(-1, '{} is not a valid country'.format(country))
+                summary = self.api_error(-1, '{} is not a valid COUNTRY.'.format(country))
+                return JsonResponse(summary, safe=False)
+
+        # Filter by country_iso
+        country_iso = request.GET.get('country_iso')
+        if country_iso:
+            country_iso = country_iso.upper()
+            if country_iso in ['US', 'CA', 'MX']:
+                fires = fires.filter(country_iso=country_iso)
+            else:
+                summary = self.api_error(-1, '{} is not a valid COUNTRY_ISO.'.format(country_iso))
                 return JsonResponse(summary, safe=False)
 
         # Filter by state
         state = request.GET.get('state')
         if state:
             state = state.upper()
-            fires = fires.filter(state=state)
+            fires = fires.filter(state__contains=state)
+
+        # Filter by state_iso
+        state_iso = request.GET.get('state_iso')
+        if state_iso:
+            state_iso = state_iso.upper()
+            fires = fires.filter(state_iso=state_iso)
 
         # Filter by name
         name = request.GET.get('name')
@@ -69,7 +91,11 @@ class ListFires(APIView):
         cause = request.GET.get('cause')
         if cause:
             cause = cause.upper()
-            fires = fires.filter(cause__contains=cause)
+            if cause in ['HUMAN', 'LIGHTNING', 'UNKNOWN']:
+                fires = fires.filter(cause=cause)
+            else:
+                summary = self.api_error(-1, '{} is not a valid CAUSE (Only HUMAN, LIGHTNING, or UNKNOWN can be specified. Leave blank for all causes).'.format(cause))
+                return JsonResponse(summary, safe=False)
 
         # Filter by size
         size_ac = request.GET.get('size_ac')
@@ -84,7 +110,7 @@ class ListFires(APIView):
         source = request.GET.get('source')
         if source:
             source = source.upper()
-            if source in ['FPA-FOD']:
+            if source in ['FPA-FOD', 'CWFIS-NFDB', 'CONAFOR-FDB']:
                 fires = fires.filter(source=source)
             else:
                 summary = self.api_error(-1, '{} is not a valid source system.'.format(source))
@@ -127,8 +153,8 @@ class ListFires(APIView):
             if query_start_date and query_end_date:
                 try:
                     if (len(query_start_date) == 8) and (len(query_end_date) == 8):
-                        start = datetime.datetime.strptime(query_start_date, '%Y%m%d').date()
-                        end = datetime.datetime.strptime(query_end_date, '%Y%m%d').date()
+                        start = datetime.datetime.strptime(query_start_date, '%Y-%m-%d').date()
+                        end = datetime.datetime.strptime(query_end_date, '%Y-%m-%d').date()
                         print(start, end)
                         if end >= start:
                             fires = fires.filter(start_date__range=(start, end ))
@@ -136,13 +162,13 @@ class ListFires(APIView):
                             summary = self.api_error(-1, 'QUERY_END_DATE must be later than QUERY_START_DATE.')
                             return JsonResponse(summary, safe=False)
                     else:
-                        summary = self.api_error(-1, 'QUERY_START_DATE and QUERY_END_DATE must be INT and each have format YYYYmmdd.')
+                        summary = self.api_error(-1, 'QUERY_START_DATE and QUERY_END_DATE must each have format YYYY-mm-dd.')
                         return JsonResponse(summary, safe=False)
                 except ValueError:
-                    summary = self.api_error(-1, 'QUERY_START_DATE and QUERY_END_DATE must be INT and each have format YYYYmmdd.')
+                    summary = self.api_error(-1, 'QUERY_START_DATE and QUERY_END_DATE must be INT and each have format YYYY-mm-dd.')
                     return JsonResponse(summary, safe=False)
             else:
-                summary = self.api_error(-1, 'QUERY_START_DATE and QUERY_END_DATE must be used together with each date having format YYYYmmdd.')
+                summary = self.api_error(-1, 'QUERY_START_DATE and QUERY_END_DATE must be used together with each date having format YYYY-mm-dd.')
                 return JsonResponse(summary, safe=False)
 
         t1 = time.time() - t0

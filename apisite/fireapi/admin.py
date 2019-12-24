@@ -5,3 +5,5 @@ from django.contrib import admin
 from .models import Fires
 
 admin.site.register(Fires)
+
+

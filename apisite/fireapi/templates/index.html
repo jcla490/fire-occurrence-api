@@ -11,14 +11,15 @@
         <div class="d-flex h-100 text-center align-items-center">
             <div class="w-100 text-white">
                 <h1 class="display-3">Over 2 million fire records</h1>
-                <p class="lead mb-0">Access for free, forever.</p>
+                <p class="lead mb-3">Access for free, forever.</p>
+                <a href="#about" class="btn btn-primary" role="button" aria-disabled="true">Learn More</a>
             </div>
         </div>  <!-- /flexbox -->
     </div> <!-- /container -->
 
 </header>
 
-<section class="pricing py-5">
+<section class="pricing py-5" id='metrics'>
     <div class="container">
         <div class="row">
             <!-- COUNTRY CARD -->
@@ -26,7 +27,7 @@
                 <div class="card mb-4 mb-lg-0">
                     <div class="card-body">
                         <h5 class="card-title text-muted text-uppercase text-center">Countries</h5>
-                        <h6 class="card-price text-center mb-2">2</h6>
+                        <h6 class="card-price text-center mb-2">3</h6>
                     </div>
                 </div>
             </div> <!-- /col -->
@@ -35,7 +36,7 @@
                 <div class="card mb-4 mb-lg-0">
                     <div class="card-body">
                         <h5 class="card-title text-muted text-uppercase text-center">Fires</h5>
-                        <h6 class="card-price text-center mb-2">2,285,066</h6>
+                        <h6 class="card-price text-center mb-2">2,302,384</h6>
                     </div>
                 </div>
             </div> <!-- /col -->
@@ -44,7 +45,7 @@
                 <div class="card mb-4 mb-lg-0">
                     <div class="card-body">
                         <h5 class="card-title text-muted text-uppercase text-center">Area Burned</h5>
-                        <h6 class="card-price text-center mb-2">450.4M<span class="period"> acres</span></h6>
+                        <h6 class="card-price text-center mb-2">452.9M<span class="period"> acres</span></h6>
                     </div>
                 </div>
             </div> <!-- /col -->
@@ -58,7 +59,7 @@
             <div class="col-md-10 mx-auto">
                 <h5 class='card-title text-muted text-uppercase'>About</h5>
                 <p>Fueled by the effects of climate change, poor forest health, and increasing populations, wildfires are becoming more frequent and more destructive, costing more money and placing more people at risk. Being able to quantify the intensity of past fire activity is an important component of fire prevention and education, planning, mitigation, and science activities designed to reduce the negative effects of fire. In recent years, many countries and agencies have begun to make past fire occurrence data available online to aid in these efforts. Unfortunately, this data lacks much standardization, may be hard to obtain, and storage formats may vary from text files to databases to GIS shapefiles. </p>
-                <p>We do the work to standardize this data by providing a simple <code>JSON</code> response structure, a browsable API for human-readability, and some value-added parameters to make searching records a bit easier. We focus on keeping the data that matters most: fire start date, final size, cause, latitude, and longitude while keeping optional fields like fire name and fire out date when they are provided by the source system. </p>
+                <p>We do the work to make this data usable by standardizing required fields to ISO formats (country, states, dates), outputting a simple <code>JSON</code> response structure, generating a browsable API for human-readability, and adding some extra query functionality to make searching records a bit easier. All records are required to have at least a start date and some spatial context (either latitude/longitude or state/province), however, most records have a final fire size, fire out date, fire name, and cause as well.
                 <p>The API should make consuming these records in your analyses, visualizations, and web and mobile applications near effortless. Ready to <a href="{% url 'getstarted' %}">get started</a>? Try an <a href="{% url 'examples' %}">example</a> or take a look at the <a href="{% url 'docs' %}">documentation</a> for more info.</p>  
             </div> <!-- /col -->
         </div> <!-- /row -->

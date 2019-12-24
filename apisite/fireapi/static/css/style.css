@@ -1,3 +1,7 @@
+html {
+  scroll-padding-top: 75px; /* height of your sticky header */
+  padding-top: 56px;
+}
 /* NAVBAR OVERRIDES */
 .navbar-toggler {
   border-color: rgb(230,230,230) !important;
@@ -7,11 +11,18 @@
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
 }
 
+.nav-link, .btn{
+  opacity: 0.75 !important;
+}
+.nav-link:hover,.btn {
+  opacity: 1 !important;
+}
 .fa-fire-alt{
   color:#FD7E15 !important;
 }
 /* VIDEO HEADER */
 header {
+
     position: relative;
     background-color: #ffffff;
     height: 75vh;
@@ -129,12 +140,12 @@ section.pricing {
 }
 
 #filler-img-2{
-	background-image: url("../img/fire_filler.jpg");
+	background-image: url("../img/bg3.jpg");
 }
 
 /* PARALLAX EFFECT FOR IMAGES */
 .parallax {
-  height: 30vh;
+  height: 35vh;
   width: 100%;
   background-attachment: fixed;
   background-position: center;
