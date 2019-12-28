@@ -25,31 +25,31 @@ def dms_to_dd(d, m, s):
 
 acres = 0
 fires = 0
-with open('/Users/joshuaclark/Desktop/repos/fire-occurrence-api/data/Mexico/csvs/Serie_historica_anual_incendios_(2015).csv', mode='r') as csv_file:
+with open('/Users/joshuaclark/Desktop/repos/fire-occurrence-api/data/Mexico/csvs/Serie_historica_anual_incendios_(2016).csv', mode='r') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     next(csv_reader, None)
     for row in csv_reader:
         SOURCE = 'CONAFOR-FDB'  # good 
         COUNTRY = 'MEXICO'  # good
-        LATITUDE = dms_to_dd(row[3], row[4], row[5])   # yeet
-        LONGITUDE = float("-" + str(dms_to_dd(row[6], row[7], row[8])))  #yeet
+        LATITUDE = dms_to_dd(row[1], row[2], row[3])   # yeet
+        LONGITUDE = float("-" + str(dms_to_dd(row[4], row[5], row[6])))  #yeet
         try: 
-            START_DATE = datetime.datetime.strptime(row[15], '%m/%d/%y').date()  # look good
+            START_DATE = datetime.datetime.strptime(row[13], '%m/%d/%y').date()  # look good
         except:
-            START_DATE = datetime.datetime.strptime(row[15], '%d-%m-%Y').date()  # look good
+            START_DATE = datetime.datetime.strptime(row[13], '%d-%m-%Y').date()  # look good
         try:    
-            END_DATE = datetime.datetime.strptime(row[16], '%m/%d/%y').date()  # okay
+            END_DATE = datetime.datetime.strptime(row[14], '%m/%d/%y').date()  # okay
         except:
-            END_DATE = datetime.datetime.strptime(row[16], '%d-%m-%Y').date()  # look good
+            END_DATE = datetime.datetime.strptime(row[14], '%d-%m-%Y').date()  # look good
 
-        FIRE_NAME = row[12]  # just take whatever this says
-        STATE = row[10]  #ok
+        FIRE_NAME = row[10]  # just take whatever this says
+        STATE = row[8]  #ok
         COUNTRY_ISO = 'MX'
         try:
-            SIZE =  float(row[29]) * 2.4710538  #probably
+            SIZE =  float(row[27]) * 2.4710538  #probably
         except ValueError:
-            SIZE = float(row[29].replace(',', '')) * 2.4710538 
-        CAUSE = row[13] # ye
+            SIZE = float(row[27].replace(',', '')) * 2.4710538 
+        CAUSE = row[11] # ye
         if CAUSE.upper() == 'NATURALES':
             CAUSE = 'LIGHTNING'
         elif CAUSE.upper() in ['NINGUNA / NO APLICA', 'DESCONOCIDAS']:
@@ -75,8 +75,7 @@ with open('/Users/joshuaclark/Desktop/repos/fire-occurrence-api/data/Mexico/csvs
             row_dict['STATE'] == 'QUERETARO'
         if row_dict['STATE'] == 'Ciudad de México'.upper():
             row_dict['STATE'] == 'DISTRITO-FEDERAL'    
-        # print(row_dict)
-        cur.execute(""" INSERT INTO fires (source, country, name, size_ac, start_date, end_date, cause, state, latitude, longitude, country_iso, state_iso) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """, (row_dict['SOURCE'], row_dict['COUNTRY'], row_dict['NAME'], row_dict['SIZE_AC'], row_dict['START_DATE'], row_dict['END_DATE'], row_dict['CAUSE'], row_dict['STATE'], row_dict['LATITUDE'], row_dict['LONGITUDE'], row_dict['COUNTRY_ISO'], row_dict['STATE_ISO']))
+        # cur.execute(""" INSERT INTO fires (source, country, name, size_ac, start_date, end_date, cause, state, latitude, longitude, country_iso, state_iso) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """, (row_dict['SOURCE'], row_dict['COUNTRY'], row_dict['NAME'], row_dict['SIZE_AC'], row_dict['START_DATE'], row_dict['END_DATE'], row_dict['CAUSE'], row_dict['STATE'], row_dict['LATITUDE'], row_dict['LONGITUDE'], row_dict['COUNTRY_ISO'], row_dict['STATE_ISO']))
 cur.close()
 postgres_conn.commit()        
 # print(acres, fires)

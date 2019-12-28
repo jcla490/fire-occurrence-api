@@ -23,15 +23,14 @@ def dms_to_dd(d, m, s):
     return dd
 
 
-acres = 0
-fires = 0
-with open('data/Mexico/csvs/Serie_historica_anual_incendios_(2017).csv', mode='r') as csv_file:
+with open('/Users/joshuaclark/Desktop/repos/fire-occurrence-api/data/Mexico/csvs/Serie_historica_anual_incendios_(2017).csv', mode='r') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     next(csv_reader, None)
     for row in csv_reader:
         
         SOURCE = 'CONAFOR-FDB'  # good 
         COUNTRY = 'MEXICO'  # good
+        COUNTRY_ISO = 'MX'
         LATITUDE = dms_to_dd(row[2], row[3], row[4])   # yeet
         LONGITUDE = float("-" + str(dms_to_dd(row[5], row[6], row[7])))  #yeet
         START_DATE = datetime.datetime.strptime(row[14], '%m/%d/%y').date()  # look good
@@ -58,13 +57,14 @@ with open('data/Mexico/csvs/Serie_historica_anual_incendios_(2017).csv', mode='r
             'CAUSE': CAUSE,
             'STATE': STATE.upper(),
             'LATITUDE': LATITUDE,
-            'LONGITUDE': LONGITUDE
+            'LONGITUDE': LONGITUDE,
+            'COUNTRY_ISO': COUNTRY_ISO,
+            'STATE_ISO': None
+
+
         }
-        acres += row_dict['SIZE_AC']
-        if row_dict['STATE'] == 'Querétaro'.upper():
-            fires += 1
-    print(fires)
-        # cur.execute(""" INSERT INTO fires (source, country, name, size_ac, start_date, end_date, cause, state, latitude, longitude) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """, (row_dict['SOURCE'], row_dict['COUNTRY'], row_dict['NAME'], row_dict['SIZE_AC'], row_dict['START_DATE'], row_dict['END_DATE'], row_dict['CAUSE'], row_dict['STATE'], row_dict['LATITUDE'], row_dict['LONGITUDE']))
+
+    # print(row_dict)
+        # cur.execute(""" INSERT INTO fires (source, country, name, size_ac, start_date, end_date, cause, state, latitude, longitude, country_iso, state_iso) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """, (row_dict['SOURCE'], row_dict['COUNTRY'], row_dict['NAME'], row_dict['SIZE_AC'], row_dict['START_DATE'], row_dict['END_DATE'], row_dict['CAUSE'], row_dict['STATE'], row_dict['LATITUDE'], row_dict['LONGITUDE'], row_dict['COUNTRY_ISO'], row_dict['STATE_ISO']))
 cur.close()
 postgres_conn.commit()        
-print(acres, fires)
