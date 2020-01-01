@@ -2,11 +2,11 @@
 {% block content %}
 {% load static %}
 
-<section class="mt-4 mb-3">
+<section class="mt-4 mb-4">
     <div class="container">
         <div class="row">
             <div class="col-md-10 mx-auto">
-                    <h5 class='card-title text-muted text-uppercase'>Data Providers</h5>
+                    <h5 class='card-title text-muted text-uppercase'>Data Sources</h5>
             </div>
         </div>
     </div>
@@ -28,11 +28,25 @@
                             <div class="media-body">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1">Canada</h5>
-                                    <small>Type: Fire <Reports></Reports> | Fires: 404,601 </small>
+                                    <small>Years: 1948 - 2019 | Fires: 404,601</small>
                                 </div>
                                 <p class="mb-1">Canada Wildfire Information System National Fire Database (CWFIS-NFDB) </p>
                                 <p><small>The CWFIS dataset includes fires from 1948 to 2019 across all provinces, territories (except the Nunavut territory), and Parks Canada. It is updated annually. Since we require fires in our dataset to have at least a start date, we eliminated 3,383 fire records (0.008%) that account for 6.2M acres burned (0.019%). We also intersected Parks Canada fires with province/territory boundaries provided by the Canada Census to get the actual province/territory the fire occurred in. This dataset is considered the authoritative source for fire occurrence in Canada.</small></p>
-                                <p><small><bold>SOURCE:</bold> Canadian Forestry Service. 2019. See <a href="https://cwfis.cfs.nrcan.gc.ca/ha/nfdb" target="_blank" >https://cwfis.cfs.nrcan.gc.ca/ha/nfdb</a> for more information.</small></p>
+                                <p class='text-muted'><small>Canadian Forestry Service. 2019. See <a href="https://cwfis.cfs.nrcan.gc.ca/ha/nfdb" target="_blank" >https://cwfis.cfs.nrcan.gc.ca/ha/nfdb</a> for more information.</small></p>
+                            </div>
+                        </div>
+                    </div> <!-- List group item -->
+                    <div class="list-group-item">
+                        <div class="media">
+                            <img src="{% static 'img/flags/chile_flag.svg' %}" class="mr-3" height="28vh" width="50vh">
+                            <div class="media-body">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Chile</h5>
+                                    <small>Years: 1984 - 2019 | Fires: 202,605 </small>
+                                </div>
+                                <p class="mb-1">Corporación Nacional Forestal Fire Database (CONAF-FDB)</p>
+                                <p><small>The CONAF dataset includes fires from 1984 to 2019 for all regions in Chile. This dataset is very complete with the exception of latitude/longitude information for fires prior to 2002. These fires have GEOREF coordinate information and we are currently working to convert these but there is missing information on the major and minor grids needed to complete the conversion. We hope to fix this with the agency provider. This dataset is considered the authoritative source for fire occurrence in Chile.</small></p>
+                                <p class='text-muted'><small>Chile Corporación Nacional Forestal. 2019. See <a href="http://www.conaf.cl/incendios-forestales/incendios-forestales-en-chile/estadisticas-historicas/" target="_blank" >http://www.conaf.cl/incendios-forestales/incendios-forestales-en-chile/estadisticas-historicas/</a> for more information.</small></p>
                             </div>
                         </div>
                     </div> <!-- List group item -->
@@ -42,11 +56,11 @@
                             <div class="media-body">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1">México</h5>
-                                    <small>Type: Fire Reports | Fires: 0 </small>
+                                    <small>Years: 2010 - 2017 | Fires: 62,081</small>
                                 </div>
                                 <p class="mb-1">México Comisión Nacional Forestal Centro Nacional de Manejo del Fuego Fire Database (CONAFOR-FDB) </p>
-                                <p><small>The CONAFOR dataset includes fires from 2010 to 2017 for all Méxican states. There are some fires with missing latitude/longitude data but each fire should have at least a state. Aside from this, the CONAFOR dataset is very complete with ample data on sizes, dates, and causes. This dataset is considered the authoritative source for fire occurrence in Mexico.</small></p>
-                                <p><small><bold>SOURCE:</bold> México Comisión Nacional Forestal. 2018. See <a href="https://datos.gob.mx/busca/dataset/incendios-forestales" target="_blank" >https://datos.gob.mx/busca/dataset/incendios-forestales</a> for more information.</small></p>
+                                <p><small>The CONAFOR dataset includes fires from 2010 to 2017 for all Méxican states. There are some fires with missing latitude/longitude data but each fire should have at least a state. Since we require fires in our dataset to have at least a start date, we eliminated 45 fire records (0.0007%) that account for 1,113 acres burned (0.0001%). Aside from these issues, the CONAFOR dataset is very complete with ample data on sizes, dates, and causes.  This dataset is considered the authoritative source for fire occurrence in México.</small></p>
+                                <p class='text-muted'><small>México Comisión Nacional Forestal. 2018. See <a href="https://datos.gob.mx/busca/dataset/incendios-forestales" target="_blank" >https://datos.gob.mx/busca/dataset/incendios-forestales</a> for more information.</small></p>
                             </div>
                         </div>
                     </div> <!-- List group item -->
@@ -56,11 +70,11 @@
                             <div class="media-body">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1">United States</h5>
-                                    <small>Type: Fire Reports | Fires: 1,880,545</small>
+                                    <small>Years: 1992 - 2015 | Fires: 1,880,545</small>
                                 </div>
                                 <p class="mb-1">Fire Program Analysis - Fire Occurrence Database (FPA-FOD) </p>
                                 <p><small>This dataset lags behind by up to two years to account for data submission, cleaning, and processing from the fifty states. Data from 1992 to 2015 across all federal land agencies, states, and some tribal governments are available. This dataset is considered the authoritative source for fire occurrence in the United States.</small></p>
-                                <p><small><bold>SOURCE:</bold> Short, Karen C. 2017. Spatial wildfire occurrence data for the United States, 1992-2015 [FPA_FOD_20170508]. 4th Edition. Fort Collins, CO: Forest Service Research Data Archive. <a href="https://doi.org/10.2737/RDS-2013-0009.4" target="_blank" >https://doi.org/10.2737/RDS-2013-0009.4</a></small></p>
+                                <p class='text-muted'><small>Short, Karen C. 2017. Spatial wildfire occurrence data for the United States, 1992-2015 [FPA_FOD_20170508]. 4th Edition. Fort Collins, CO: Forest Service Research Data Archive. <a href="https://doi.org/10.2737/RDS-2013-0009.4" target="_blank" >https://doi.org/10.2737/RDS-2013-0009.4</a></small></p>
                             </div>
                         </div>
                     </div> <!-- List group item -->

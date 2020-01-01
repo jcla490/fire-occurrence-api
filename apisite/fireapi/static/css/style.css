@@ -11,18 +11,19 @@ html {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
 }
 
-.nav-link, .btn{
+.nav-link{
   opacity: 0.75 !important;
 }
-.nav-link:hover,.btn {
+.nav-link:hover{
   opacity: 1 !important;
 }
 .fa-fire-alt{
   color:#FD7E15 !important;
-}
+} 
+
+/* FFB238 */
 /* VIDEO HEADER */
 header {
-
     position: relative;
     background-color: #ffffff;
     height: 75vh;
@@ -50,6 +51,18 @@ header .container {
     position: relative;
     z-index: 2;
 }
+
+.header-text{
+  font-family: Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol !important;
+  font-weight: 400 !important;
+  line-height: 1!important;
+}
+
+.header-second-text{
+  font-family: Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol !important;
+  font-weight: 400 !important;
+  line-height: 1!important;
+}
   
 header .overlay {
     position: absolute;
@@ -58,7 +71,7 @@ header .overlay {
     height: 100%;
     width: 100%;
     background-color: black;
-    opacity: 0.4;
+    opacity: 0.35;
     z-index: 1;
 }
   
@@ -71,6 +84,9 @@ header .overlay {
     }
 }
 
+.card-title{
+  margin-bottom: 0;
+}
 section.pricing {
 	background: #e6e6e6;
     /* background: linear-gradient(to right, #dc3545, #F64F5F); */

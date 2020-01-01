@@ -4,7 +4,9 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
     <meta name="theme-color" content=""/>
     <meta name="description" content="">
     <meta name="author" content="Josh Clark">
@@ -42,16 +44,16 @@
                     <a class="nav-link text-white" href="{% url 'docs' %}">Reference</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'dataproviders' %}">Data Providers</a>
+                    <a class="nav-link text-white" href="{% url 'dataproviders' %}">Data Sources</a>
                 </li>
             </ul>
             <hr>
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'index' %}#contact">Contact</a>
-                </li>
+                    <a class="nav-link text-white" href="#">Account</a>
+                </li>&nbsp;&nbsp;
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Sign Up!</a>
+                    <a class="nav-link text-white"  href="#">Sign Up!</a>
                 </li>
             </ul>
         </div>
@@ -62,7 +64,8 @@
 
     <!-- FOOTER -->
     <footer class="text-center py-3">
-        <p class="text-muted"><small>&copy; 2019 | All data here subject to the original licenses and agreements of the data providers.</small></p>
+        <p class="text-muted"><small>&copy; 2019 | All data here subject to the original licenses and agreements of the data providers. <a href="{% url 'index' %}#contact">Contact Us</a>.</small></p>
+
         <a href="https://github.com/jcla490/fire-occurrence-api"><i id="social-github" class="fab fa-github fa-3x social"></i></a>
     </footer>
 
