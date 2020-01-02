@@ -6,7 +6,7 @@
 # start_date     DONE
 # end_date       DONE
 # cause          DONE, explicit list
-# state          DONE, contains (because sometimes a country's second language can be used, like Canada)
+# state          DONE, 
 # latitude       DONE
 # longitude      DONE
 # state_iso      DONE, must be a direct match
@@ -16,6 +16,7 @@
 # year           SCOPING
 # month          SCOPING
 # doy            SCOPING
+
 
 from rest_framework import status
 from rest_framework.response import Response

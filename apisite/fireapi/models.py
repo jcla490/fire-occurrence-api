@@ -131,6 +131,10 @@ class Fires(models.Model):
     longitude = models.DecimalField(max_digits=65535, decimal_places=65535)
     state_iso = models.CharField(max_length=10, blank=True, null=True)
     country_iso = models.CharField(max_length=10, blank=True, null=True)
+    fire_year = models.IntegerField(blank=True, null=True)
+    fire_month = models.IntegerField(blank=True, null=True)
+    fire_doy = models.IntegerField(blank=True, null=True)
+    size_ha = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
 
     class Meta:
         managed = False
