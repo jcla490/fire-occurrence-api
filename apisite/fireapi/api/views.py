@@ -1,6 +1,5 @@
-# TODO 22 December 2019
+# TODO 1 January 2020
 # id             DONE, ValueError if not int
-# source         DONE, explicit list
 # country        DONE, explicit list
 # name           DONE, contains
 # size_ac        DONE, greater than only, ValidationError if not int or float
@@ -53,7 +52,7 @@ class ListFires(APIView):
         country = request.GET.get('country')
         if country:
             country = country.upper()
-            if country in ['UNITED-STATES', 'CANADA', 'MEXICO']:
+            if country in ['UNITED-STATES', 'CANADA', 'MEXICO', 'CHILE']:
                 fires = fires.filter(country=country)
             else:
                 summary = self.api_error(-1, '{} is not a valid COUNTRY.'.format(country))
@@ -63,7 +62,7 @@ class ListFires(APIView):
         country_iso = request.GET.get('country_iso')
         if country_iso:
             country_iso = country_iso.upper()
-            if country_iso in ['US', 'CA', 'MX']:
+            if country_iso in ['US', 'CA', 'MX', 'CL']:
                 fires = fires.filter(country_iso=country_iso)
             else:
                 summary = self.api_error(-1, '{} is not a valid COUNTRY_ISO.'.format(country_iso))
@@ -105,17 +104,7 @@ class ListFires(APIView):
             except ValidationError:
                 summary = self.api_error(-1, 'SIZE must be of type INT or FLOAT.')
                 return JsonResponse(summary, safe=False)
-
-        # Filter by source
-        source = request.GET.get('source')
-        if source:
-            source = source.upper()
-            if source in ['FPA-FOD', 'CWFIS-NFDB', 'CONAFOR-FDB']:
-                fires = fires.filter(source=source)
-            else:
-                summary = self.api_error(-1, '{} is not a valid source system.'.format(source))
-                return JsonResponse(summary, safe=False)
-
+ 
         # Filter by id
         id = request.GET.get('id')
         if id:

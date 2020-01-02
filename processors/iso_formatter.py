@@ -80,13 +80,18 @@ def state_update(country_iso, countries):
     postgres_conn = psycopg2.connect(database="fires", user="postgres", password="OvenT0aster!")
     cur = postgres_conn.cursor()
     for record in tup_list:
-        cur.execute(""" UPDATE fires SET STATE = '{}', STATE_ISO = '{}' WHERE ID = '{}' """.format(record[3], record[2], record[0]))
+        if record[3] == "LIBERTADOR-GENERAL-BERNARDO-O'HIGGINS":
+            dummy_higs = "LIBERTADOR-GENERAL-BERNARDO-O''HIGGINS"
+            cur.execute(""" UPDATE fires SET STATE = '{}', STATE_ISO = '{}' WHERE ID = '{}' """.format(dummy_higs, record[2], record[0]))
+        else:
+            cur.execute(""" UPDATE fires SET STATE = '{}', STATE_ISO = '{}' WHERE ID = '{}' """.format(record[3], record[2], record[0]))
+
     cur.close()
     postgres_conn.commit()
     return print('update complete.')
 
 
-state_update('MX', countries)
+state_update('CL', countries)
 # postgres_conn = psycopg2.connect(database="fires", user="postgres", password="OvenT0aster!")
 # cur = postgres_conn.cursor()
 # cur.execute('UPDATE fires SET country = UPPER(country)')
