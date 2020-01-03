@@ -43,11 +43,24 @@ class ListFires(APIView):
         }
         return summary
 
-    def get(self, request):
+    def get(self, request, **kwargs):
         t0 = time.time()
 
         # All fire objects
         fires = Fires.objects.all()
+        
+        # Hold up wait a minute put a little country in it
+        q_params = dict(self.request.query_params)
+        print(dict(request.query_params))
+        if any(x in q_params for x in ['country_iso', 'country', 'COUNTRY', 'COUNTRY_ISO']) == False:
+            summary = self.api_error(-1, 'Either COUNTRY_ISO or COUNTRY is required for a valid query.')
+            return JsonResponse(summary, safe=False)
+        
+        # Check for blank parameters
+        for param in q_params:
+            if q_params[param] == ['']:
+                summary = self.api_error(-1, '{} cannot be left blank.'.format(param.upper()))
+                return JsonResponse(summary, safe=False)    
 
         # Filter by country
         country = request.GET.get('country')
@@ -61,6 +74,7 @@ class ListFires(APIView):
 
         # Filter by country_iso
         country_iso = request.GET.get('country_iso')
+        print(country_iso)
         if country_iso:
             country_iso = country_iso.upper()
             if country_iso in ['US', 'CA', 'MX', 'CL']:
@@ -68,12 +82,12 @@ class ListFires(APIView):
             else:
                 summary = self.api_error(-1, '{} is not a valid COUNTRY_ISO.'.format(country_iso))
                 return JsonResponse(summary, safe=False)
-
+            
         # Filter by state
         state = request.GET.get('state')
         if state:
             state = state.upper()
-            fires = fires.filter(state__contains=state)
+            fires = fires.filter(state=state)
 
         # Filter by state_iso
         state_iso = request.GET.get('state_iso')
