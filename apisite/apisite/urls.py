@@ -19,8 +19,10 @@ from django.urls import path, include
 urlpatterns = [
     path('', include('fireapi.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
 
     # REST FRAMEWORK URLS
-    path('api/fires/', include('fireapi.api.urls', 'fire_api'))
+    path('api/fires/', include('fireapi.api.urls', 'fire_api')),
+
 ]
 

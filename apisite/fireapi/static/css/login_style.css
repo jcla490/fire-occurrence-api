@@ -1,0 +1,11 @@
+html, body{
+    background: #e6e6e6;
+}
+
+h5{
+    font-size: 2em;
+}
+
+.login_brand:hover{
+    text-decoration: none;
+}
