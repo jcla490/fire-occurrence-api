@@ -1,12 +1,36 @@
-{% extends "account/base.html" %}
+{% extends "account/loginbase.html" %}
+{% load static %}
 
 {% load i18n %}
+{% load account %}
 
-{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+{% block head_title %}{% trans "Verify your email" %}{% endblock %}
 
 {% block content %}
-    <h1>{% trans "Verify Your E-mail Address" %}</h1>
+<section class="mt-4 mb-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 mx-auto text-center">
+					<h5 class='card-title text-muted text-uppercase'><a class="login_brand text-muted" href="{% url 'index' %}"><i class="fas fa-fire-alt"></i> {% trans "Global Fire API" %}</a></h5>
+			</div>
+		</div>
+	</div>
+</section>
 
-    <p>{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+<section id='password-reset'>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+				<div class="card">
+					<div class="card-body text-center">
+                        <p class='mb-0'>{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process.{% endblocktrans %}</p>
 
+                    
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 {% endblock %}
+

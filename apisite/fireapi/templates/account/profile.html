@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load i18n %}
+{% load account %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+    <section class="mt-4 mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                        <h5 class='card-title text-muted text-uppercase'>Your account</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-4 mb-1" id='user-profile'>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="card border-0 ">
+                        <div class="card-body px-0 py-3">                            
+                            <h5 class="card-title mb-2">API KEY</h5>
+                            <h6 class="card-subtitle mb-2 text-muted pb-2">This is for generating tokens. Keep this secret!</h6>
+                            <pre class='text-primary text-center'>user.api_key</pre>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="card border-0 ">
+                        <div class="card-body px-0 py-3">                            
+                            <h5 class="card-title mb-2">API TOKEN</h5>
+                            <h6 class="card-subtitle mb-2 text-muted pb-2">Use this to make API queries by passing <code>&token=YOUR_API_TOKEN</code> in the URL.</h6>
+                            <pre class='text-primary text-center'>user.api_token</pre>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="card border-0 ">
+                        <div class="card-body px-0 py-3">                            
+                            <h5 class="card-title mb-2 d-inline-block pr-3">USER INFORMATION</h5><a href="{% url 'account_change_password' %}"><small>Change Password</small></a>
+
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>Name:</td>
+                                        <td>{{ user.first_name }} {{ user.last_name }}</td>
+                                      </tr>
+                                    <tr>
+                                      <td>Email:</td>
+                                      <td>{{ user.email }}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Username:</td>
+                                      <td>{{ user.username }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <!-- <hr> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% else %}
+    <section id='login-redirect'>
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-md-6 mx-auto text-center">
+                    <p class=>{% blocktrans %}You must be signed in to view your account.{% endblocktrans %}</p>
+                    <a href="{% url 'account_login' %}" class="btn btn-primary" role="button" aria-disabled="true">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endif %}
+
+{% endblock %}

@@ -20,7 +20,7 @@ urlpatterns = [
     path('', include('fireapi.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-
+    
     # REST FRAMEWORK URLS
     path('api/fires/', include('fireapi.api.urls', 'fire_api')),
 

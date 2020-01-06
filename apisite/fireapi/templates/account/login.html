@@ -26,14 +26,18 @@
             <div class="col-md-6 mx-auto">
 				<div class="card">
 					<div class="card-body text-center">
-						<form class="login" method="POST" action="{% url 'account_login' %}">
+						<form class="login pt-2 w-100" method="POST" action="{% url 'account_login' %}">
 							{% csrf_token %}
 							{{ form.as_p }}
+
 							{% if redirect_field_value %}
 								<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
 							{% endif %}
 							<a class="btn btn-outline-secondary" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
 							<button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+							{% for error in form.non_field_errors %}
+									<p class='text-danger pt-4 pb-2 mb-0 error_text'>{{ error| escape }}</p>
+							{% endfor %}
 						</form>
 					</div>
 				</div>

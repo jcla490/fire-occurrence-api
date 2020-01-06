@@ -196,3 +196,8 @@ footer{
 #social-github:hover {
     color: #DC3545 !important;
 }
+pre{
+  background-color: #e6e6e6 !important;
+  font-size: 1.2em;
+  
+} 

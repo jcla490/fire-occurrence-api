@@ -1,21 +1,62 @@
-{% extends "account/base.html" %}
+{% extends "account/loginbase.html" %}
+{% load static %}
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block head_title %}{% trans "Sign Up" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+<section class="mt-4 mb-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 mx-auto text-center">
+					<h5 class='card-title text-muted text-uppercase'><a class="login_brand text-muted" href="{% url 'index' %}"><i class="fas fa-fire-alt"></i> {% trans "Global Fire API" %}</a></h5>
+			</div>
+		</div>
+	</div>
+</section>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
 
+<section id='sign-in'>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 mx-auto">
+      <div class="card">
+        <div class="card-body text-center">
+          <p class='mb-4 text-center'>{% blocktrans %}To get an API token, please provide a few details below.{% endblocktrans %}</p>
+
+          <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button type="submit" class='btn btn-primary'>{% trans "Sign Up!" %}</button>
+            {% for error in form.email.errors %}
+            <p class='text-danger pt-4 pb-2 mb-0 error_text'>{{ error| escape }}</p>
+            {% endfor %}
+            {% if form.password1.errors or form.password2.errors %}
+
+              <p class='text-danger pt-4 pb-2 mb-0 error_text'>{{ error | escape }}</p>
+            {% endif %}
+
+
+          </form>
+        </div>
+      </div>
+      <div class='card mt-3'>
+        <div class='card-body'>
+          <p class='mb-0 text-center'>{% blocktrans %}Already have an account? <a href="{{ login_url }}">Sign in</a>.{% endblocktrans %}</p>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
 {% endblock %}
+
+
+

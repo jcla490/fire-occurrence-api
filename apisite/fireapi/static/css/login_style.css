@@ -9,3 +9,29 @@ h5{
 .login_brand:hover{
     text-decoration: none;
 }
+
+.error_text{
+    font-size:0.7em;
+    font-weight: bolder;
+}
+
+.errorlist {
+    display: none;
+}
+
+
+label[for="id_password"], label[for="id_login"], label[for="id_email"], 
+label[for="id_username"], label[for="id_password1"], label[for="id_password2"],
+label[for="id_oldpassword"]
+{
+    display:none;
+}
+
+#id_login, #id_password, #id_email, #id_username, #id_password1, #id_password2, #id_oldpassword{
+    width: 65%;
+    height: 2.38em;
+    border-radius: 4px;
+    border: none; /* <-- This thing here */
+    border:solid 1px #ccc;
+    padding-left:10px;
+}
