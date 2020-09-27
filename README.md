@@ -1,7 +1,7 @@
 # fire-occurrence-api
 A public web api for displaying the world's fire occurrence data
 
-Built using Django, Django Rest Framework, AllAuth, and Postgres. Deployed on AWS. 
+Built using Django, Django REST, AllAuth, and Postgres. Deployed on AWS. 
 
 ## Current data sources:
 
